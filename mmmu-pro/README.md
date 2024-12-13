@@ -2,7 +2,7 @@
 
 ## Overview
 
-This folder contains inference scripts for the [MMMU-Pro](https://huggingface.co/datasets/MMMU/MMMU_Pro) dataset. 
+This folder contains inference scripts for the [MMMU-Pro](https://huggingface.co/datasets/MMMU/MMMU_Pro) dataset.  
 0. `infer_mlc.py`: For model inference on MLC serving API
 1. `infer_xxx.py`: For other model inference
 2. `evaluate.py`: For evaluating inference results
