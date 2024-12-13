@@ -9,7 +9,17 @@ This folder contains inference scripts for the [MMMU-Pro](https://huggingface.co
 Make sure to configure the necessary model and data files before use.
 
 ## Script Descriptions
-
+### 0. Special Instructions for `infer_mlc.py`
+First setup the serving. Docs of MLC-LLM are useful. An example command is below, but the paths, port and other options can be changed to your requirement
+```
+$ mlc_llm serve ./dist/Phi-3.5-vision-instruct-q4f32_1-MLC/ --model-lib ./dist/libs/Phi-3.5-vision-instruct-q4f32_1-cuda.so --port 3333
+```
+Next, run the inference. Currently supports MMMU and MMMU-Pro. Specify 'all' to run all subsets (only for MMMU). Otherwise, the options are 'standard' and 'vision' for MMMU-Pro and 30 subsets for MMMU like Accounting, Math, etc.
+```
+$ python infer/infer_mlc.py "Phi-3.5-vision-instruct-q4f32_1-MLC" http://127.0.0.1:3333/v1 direct MMMU/MMMU all
+```
+Outputs will be stored in ./output/ . It will be a file with a list of JSONs, 1 JSON (= 1 example) per line  
+Currently MLC serving may hit OOM and not recover. In that case, kill both commands, delete rows in output file containing the error, and rerun both of the previous commands
 ### 1. Model Inference Script: `infer_xxx.py`
 
 This script loads a specified model and performs inference. To run the script, use the following steps:
